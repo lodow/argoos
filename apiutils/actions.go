@@ -126,6 +126,8 @@ func checkToUpdate(event Event, d v1beta1.Deployment, policy string) {
 		vMajor, vMinor, vPatch := getVersion(c.Image)
 		update := false
 		switch policy {
+		case "latest":
+			update = update || (event.Target.Tag == "latest")
 		case "all":
 			update = true
 		case "major":
