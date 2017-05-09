@@ -15,7 +15,7 @@ metadata:
 ```
 
 Policies can be:
-
+- "latest" : to deploy images only if "latest" image has changed
 - "patch" : to deploy images only if "patch" version has changed
 - "minor" : to deploy images only if "minor" version has changed
 - "major" : to deploy images only if "major" version has changed
@@ -82,7 +82,7 @@ Save the configuration and then map the volume to registry:
 docker run -p 5000:5000 -v $(pwd)/config.yml:/etc/docker/registry/config.yml registry:2
 ```
 
-Launch argoos and be sure that "argoos.url" is accessible using: http://argoos.url:3000/healtz is responding.
+Launch argoos and be sure that "argoos.url" is accessible using: http://argoos.url:3000/healthz is responding.
 
 Registry will now contact Argoos for each pushed layers and images.
 
