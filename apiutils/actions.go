@@ -141,6 +141,8 @@ func checkToUpdate(event Event, d v1beta1.Deployment, policy string) {
 		}
 		c.Image = fmt.Sprintf("%s/%s:%s", event.Request.Host, event.Target.Repository, event.Target.Tag)
 		d.Spec.Template.Spec.Containers[i] = c
+		// if we are in latest policy, we need to make a change to trigger the rolling update.
+		d.Spec.Template.ObjectMeta.Labels["date"] = strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
 		if update {
 			go func() {
 				toUpdate <- &d
